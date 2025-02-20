@@ -65,10 +65,14 @@ RUN apt-get update -q && \
         libc6-dev \
         libc6 \
         libc-dev-bin \
+        g++ \
         && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
     apt-get clean
+
+RUN wget https://go.dev/dl/go1.24.0.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz
 
 # create new user to avoid using root; but with sudo access and no password for convenience.
 ENV USER="user"
